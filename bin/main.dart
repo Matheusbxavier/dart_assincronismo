@@ -35,3 +35,7 @@ requestDataAsync() async {
   print("De fato, a última coisa a acontecer na função.");
 
 }
+
+sendDataAsync(Map<String, dynamic> mapAccount) async {
+  
+}
