@@ -1,17 +1,26 @@
+import 'dart:async';
+
 import 'package:dart_assincronismo/api_key.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+StreamController<String> streamController = StreamController<String>();
+
 void main() {
+  StreamSubscription streamSubscription = streamController.stream.listen((
+    String info,
+  ) {
+    print(info);
+  });
   //print("Olá Mundo!");
   //requestData();
   //requestDataAsync();
-  sendDataAsync({
-    "id": "NEW001",
-    "name": "Flutter",
-    "lastName": "Dart",
-    "balance": 5000,
-  });
+  //sendDataAsync({
+  //   "id": "NEW001",
+  //   "name": "Flutter",
+  //   "lastName": "Dart",
+  //   "balance": 5000,
+  // });
 }
 
 requestData() {
@@ -52,13 +61,11 @@ sendDataAsync(Map<String, dynamic> mapAccount) async {
     Uri.parse(url),
     headers: {"Authorization": "Bearer $githubApiKey"},
     body: json.encode({
-      "description" : "account.json",
-      "public" : true,
-      "files" : {
-        "accounts.json" : {
-          "content" : content,
-        }
-      }
+      "description": "account.json",
+      "public": true,
+      "files": {
+        "accounts.json": {"content": content},
+      },
     }),
   );
   print(response.statusCode);

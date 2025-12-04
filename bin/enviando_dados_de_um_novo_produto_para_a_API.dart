@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 
-Future<void> sendProduct(Map<String, dynamic> product) async {
+/*Future<void> sendProduct(Map<String, dynamic> product) async {
   Uri url = Uri.parse('SUA_URL_GIST_AQUI');
   
   Response response = await post(
@@ -28,6 +28,7 @@ Future<void> sendProduct(Map<String, dynamic> product) async {
     print('Erro ao enviar produto: ${response.statusCode}');
   }
 }
+*/
 
 void main() {
   Map<String, dynamic> newProduct = {
@@ -35,5 +36,5 @@ void main() {
     "name": "Monitor",
     "price": 800.00
   };
-  sendProduct(newProduct);
+  //sendProduct(newProduct);
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<void> sendMultipleProducts(List<Map<String, dynamic>> products, String nameList) async {
+/*Future<void> sendMultipleProducts(List<Map<String, dynamic>> products, String nameList) async {
   Uri url = Uri.parse('SUA_URL_GIST_AQUI');
   
   String content = json.encode(products);
@@ -30,7 +30,7 @@ Future<void> sendMultipleProducts(List<Map<String, dynamic>> products, String na
     print('Erro ao enviar produto: ${response.statusCode}');
   }
 }
-
+*/
 void main() {
   var newProducts = [
     {
@@ -44,5 +44,5 @@ void main() {
       "price": 100.00
     }
   ];
-  sendMultipleProducts(newProducts, "Periféricos");
+  //sendMultipleProducts(newProducts, "Periféricos");
 }
