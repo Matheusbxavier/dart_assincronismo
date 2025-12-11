@@ -12,34 +12,26 @@ void main() {
   ) {
     print(info);
   });
-  //print("Olá Mundo!");
-  //requestData();
-  //requestDataAsync();
-  //sendDataAsync({
-  //   "id": "NEW001",
-  //   "name": "Flutter",
-  //   "lastName": "Dart",
-  //   "balance": 5000,
-  // });
+  print("Olá Mundo!");
+  requestData();
+  requestDataAsync();
+  sendDataAsync({
+    "id": "NEW001",
+    "name": "Flutter",
+    "lastName": "Dart",
+    "balance": 5000,
+  });
 }
 
 requestData() {
   String url =
       "https://gist.githubusercontent.com/Matheusbxavier/0570c3091694b0a415cdc1ddd8b89355/raw/dcaba5577bcca0e2f91e9e1916f0de72ce556fdd/accounts.json";
   Future<Response> futureResponse = get(Uri.parse(url));
-  print(futureResponse);
   futureResponse.then((Response response) {
-    print(response);
-    print(response.body);
-    json.decode(response.body);
-    List<dynamic> listAccounts = json.decode(response.body);
-    Map<String, dynamic> mapCarla = listAccounts.firstWhere(
-      (element) => element["name"] == "Carla",
+    streamController.add(
+      "${DateTime.now()} | Requisição de leitura(usando then).",
     );
-    print(mapCarla["balance"]);
   });
-
-  print("Ultima coisa a acontecer na função.");
 }
 
 Future<List<dynamic>> requestDataAsync() async {
@@ -47,6 +39,7 @@ Future<List<dynamic>> requestDataAsync() async {
       "https://gist.githubusercontent.com/Matheusbxavier/0570c3091694b0a415cdc1ddd8b89355/raw/dcaba5577bcca0e2f91e9e1916f0de72ce556fdd/accounts.json";
 
   Response response = await get(Uri.parse(url));
+  streamController.add("${DateTime.now()} | Requisição de leitura.");
   return json.decode(response.body);
 }
 
@@ -68,5 +61,14 @@ sendDataAsync(Map<String, dynamic> mapAccount) async {
       },
     }),
   );
-  print(response.statusCode);
+
+  if (response.statusCode.toString()[0] == "2") {
+    streamController.add(
+      "${DateTime.now()} | Requisição de adição bem sucedida (${mapAccount["name"]}).",
+    );
+  } else {
+    streamController.add(
+      "${DateTime.now()} | Requisição de adição falhou (${mapAccount["name"]}).",
+    );
+  }
 }
